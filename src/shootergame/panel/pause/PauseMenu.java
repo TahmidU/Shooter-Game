@@ -66,10 +66,16 @@ public class PauseMenu extends JPanel
         resumeImage = new ImageIcon("data/Menu/PauseMenu/Resume.png");
         restartImage = new ImageIcon("data/Menu/PauseMenu/Restart.png");
         quitImage = new ImageIcon("data/Menu/quit.png");
-        try{
-        world.stopSound();
-        world.stop();
-        }catch(NullPointerException ex){}
+
+        if(world != null)
+        {
+            world.stopSound();
+            world.stop();
+        }else
+            {
+                return;
+            }
+
         setLayout(new GridBagLayout());
         
         //defaults
@@ -125,13 +131,9 @@ public class PauseMenu extends JPanel
            frame.getContentPane().repaint();
            frame.getContentPane().invalidate();
            
-            try {
-                System.gc();
-                new MainMenu(frame.getTitle(),frame.getWidth(),frame.getHeight(),frame);
-                
-            } catch (IOException ex) {
-                Logger.getLogger(PauseMenu.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+           new MainMenu(frame.getTitle(),frame.getWidth(),frame.getHeight(),frame);
+
         }
     }
     

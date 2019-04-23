@@ -56,7 +56,7 @@ public class GameFrame extends JFrame{
      * IO Error.
      */
     public GameFrame(String winName, GameView view, int width, int height
-            , GameLevel world, Game game) throws IOException
+            , GameLevel world, Game game)
     {
         super(winName);
         this.view = view;
@@ -97,7 +97,7 @@ public class GameFrame extends JFrame{
      * @throws IOException
      * IO Error.
      */
-    public GameFrame(String winName, int width, int height, JPanel panel) throws IOException
+    public GameFrame(String winName, int width, int height, JPanel panel)
     {
         super(winName);
        

@@ -249,12 +249,10 @@ public class Game{
                 break;
             default:
                 new MainMenu(title, width, height, frame);
-                System.gc();
-                break;
+                return;
         }
         
         //frame = new GameFrame(title, view, width, height, world, this);
-        try{
         this.frame.getContentPane().add(view);
         this.frame.getContentPane().repaint();
         this.frame.getContentPane().validate();
@@ -264,7 +262,6 @@ public class Game{
         world.populate(this, view, frame);
         view.setFrame(frame);
         view.setPlayer(world.getPlayer());
-        }catch(NullPointerException npe){}
         //frame.debugFrame(world);
         
         

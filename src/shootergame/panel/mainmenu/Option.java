@@ -151,12 +151,12 @@ public class Option extends JPanel
             @Override
             public void actionPerformed(ActionEvent ae)
             {
-                try {
-                    new PopUp("Click Back to apply.");
-                    OptionManager optionsManager = new OptionManager();
-                    optionsManager.read();
-                    switch((String)resOp.getSelectedItem())
-                    {
+
+                new PopUp("Click Back to apply.");
+                OptionManager optionsManager = new OptionManager();
+                optionsManager.read();
+                switch((String)resOp.getSelectedItem())
+                {
                         case "800x600":
                             optionsManager.replaceString(optionsManager.getLine(1), "resolution: 800x600");
                             break;
@@ -167,13 +167,7 @@ public class Option extends JPanel
                             optionsManager.replaceString(optionsManager.getLine(1), "resolution: 1920x1080");
                             break;
                     }
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Option.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (UnsupportedEncodingException ex) {
-                    Logger.getLogger(Option.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(Option.class.getName()).log(Level.SEVERE, null, ex);
-                }
+
             }
             
             
@@ -184,18 +178,9 @@ public class Option extends JPanel
             @Override
             public void stateChanged(ChangeEvent ce)
             {
-                try {
-                    
-                    OptionManager optionsManager = new OptionManager();
-                    optionsManager.read();
-                    optionsManager.replaceString(optionsManager.getLine(0), "volume: " + (double) volumeSlider.getValue()/100);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Option.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (UnsupportedEncodingException ex) {
-                    Logger.getLogger(Option.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(Option.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                OptionManager optionsManager = new OptionManager();
+                optionsManager.read();
+                optionsManager.replaceString(optionsManager.getLine(0), "volume: " + (double) volumeSlider.getValue()/100);
             }
             
         });
@@ -241,11 +226,11 @@ public class Option extends JPanel
                 int winY = 0;
                 
                 
-                try {
-                    OptionManager optionsManager = new OptionManager();
-                    optionsManager.read();
-                    switch(optionsManager.getLine(1).substring(12))
-                    {
+
+                OptionManager optionsManager = new OptionManager();
+                optionsManager.read();
+                switch(optionsManager.getLine(1).substring(12))
+                {
                         case "800x600":
                             winX = 800;
                             winY = 600;
@@ -259,14 +244,11 @@ public class Option extends JPanel
                             winY = 1080;
                             break;
                         default:
-                    }
+                }
                     //System.out.print(optionsManager.getLine(1));
                     //new MainMenu(winName, winX, winY);
-                    destroyOption();
-                    new MainMenu(winName, winX, winY, frame);
-                } catch (IOException ex) {
-                    Logger.getLogger(Option.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                destroyOption();
+                new MainMenu(winName, winX, winY, frame);
             }
             
             

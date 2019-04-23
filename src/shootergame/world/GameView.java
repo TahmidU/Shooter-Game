@@ -80,11 +80,11 @@ public class GameView extends UserView{
         this.winX = winX;
         this.winY = winY;
         
-        try{
-            OptionManager optionsManager = new OptionManager();
-            optionsManager.read();
-            switch(optionsManager.getLine(1).substring(12))
-            {
+
+        OptionManager optionsManager = new OptionManager();
+        optionsManager.read();
+        switch(optionsManager.getLine(1).substring(12))
+        {
                 case "800x600":
                     relX = 0.92f;
                     relY = 0.92f;
@@ -101,8 +101,7 @@ public class GameView extends UserView{
                     offset = 0;
                     break;
                 default:
-            }
-        }catch(IOException ex){}
+        }
         
         GUIFont = new Font("Times New Roman", Font.BOLD, Math.round(50*relX));
     }

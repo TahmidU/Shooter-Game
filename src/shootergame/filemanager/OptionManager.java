@@ -17,54 +17,45 @@ import java.util.ArrayList;
  */
 public class OptionManager
 {
-    private PrintWriter writer;
     private File options;
     private FileReader optionsReader;
-    private BufferedWriter bufferedWriter;
     private BufferedReader bufferedFile;
     private final ArrayList<String> elements;
     
     /**
      * Constructor for OptionManager class.
      * Opens a option.txt file and initialises an ArrayList.
-     * If file does not exist it will be created and default setting will be written. 
-     * 
-     * @throws FileNotFoundException
-     * If txt file is not found.
-     * 
-     * @throws UnsupportedEncodingException
-     * If the charset that JVM supports does not match.
+     * If file does not exist it will be created and default setting will be written.
      */
-    public OptionManager() throws FileNotFoundException, UnsupportedEncodingException
+    public OptionManager()
     {
         options = new File("data/config/option.txt");
         elements = new ArrayList<>();
         
-        if(options.exists() == false)
+        if(!options.exists())
         {
             System.out.println("File does not exist");
-            writer = new PrintWriter("data/config/option.txt", "UTF-8");
+            try {
+                PrintWriter writer = new PrintWriter("data/config/option.txt", "UTF-8");
             //defaults
             writer.format("%s%s", "volume: ", "30");
             writer.format("%n%s%s", "resolution: ", "1280x720");
             System.out.println("File Created");
             writer.close();
+            } catch (FileNotFoundException | UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             
         }
     }
     
     /**
      * Reads the contents from the txt file and pushes each line into an array.
-     * 
-     * @throws FileNotFoundException
-     * If file not found.
-     * 
-     * @throws IOException
-     * If error occurred while reading or writing.
      */
-    public void read() throws FileNotFoundException, IOException
+    public void read()
     {
-        optionsReader = new FileReader(options);
+        try {
+            optionsReader = new FileReader(options);
         bufferedFile = new BufferedReader(optionsReader);
         String line;
         while((line = bufferedFile.readLine()) != null)
@@ -73,6 +64,9 @@ public class OptionManager
         }
         optionsReader.close();
         bufferedFile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     /**
@@ -103,13 +97,14 @@ public class OptionManager
      * Initialises the FileReader and BufferedReader.
      * @return
      * The BufferedReader
-     * @throws FileNotFoundException
-     * If the txt file is not found.
-     * 
      */
-    public BufferedReader bufferedReader() throws FileNotFoundException
+    public BufferedReader bufferedReader()
     {
-        optionsReader = new FileReader(options);
+        try {
+            optionsReader = new FileReader(options);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         bufferedFile = new BufferedReader(optionsReader);
         
         return bufferedFile;
@@ -138,13 +133,12 @@ public class OptionManager
      * 
      * @param string1
      * String intended to replace with
-     * 
-     * @throws IOException
-     * If error occurred while reading or writing. 
      */
-    public void replaceString(String string, String string1) throws IOException
+    public void replaceString(String string, String string1)
     {
-        optionsReader = new FileReader(options);
+        try {
+            optionsReader = new FileReader(options);
+
         bufferedFile = new BufferedReader(optionsReader);
         
         String line = bufferedFile.readLine();
@@ -158,12 +152,15 @@ public class OptionManager
         }
         
         modifiedContent = originalContent.replaceFirst(string, string1);
-        bufferedWriter = new BufferedWriter(new FileWriter("data/config/option.txt"));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("data/config/option.txt"));
         bufferedWriter.write(modifiedContent);
         
         optionsReader.close();
         bufferedFile.close();
         bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
 }

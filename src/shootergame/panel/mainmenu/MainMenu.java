@@ -49,7 +49,7 @@ public class MainMenu extends JPanel
      * @throws IOException
      * IO Error.
      */
-    public MainMenu(String winName, int width, int height) throws IOException
+    public MainMenu(String winName, int width, int height)
     {
         super();
         this.setBackground(new Color(0,96,255));
@@ -190,7 +190,7 @@ public class MainMenu extends JPanel
      * IO Error.
      */
     @SuppressWarnings("LeakingThisInConstructor")
-    public MainMenu(String winName, int width, int height, GameFrame frame) throws IOException
+    public MainMenu(String winName, int width, int height, GameFrame frame)
     {
         super();
         this.setBackground(new Color(0,96,255));

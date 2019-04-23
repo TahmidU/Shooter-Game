@@ -184,6 +184,7 @@ public class LevelThree extends GameLevel
                 if(isCompleted() == true)
                 {
                     try {
+                        timer.cancel();
                         game.goNextLevel();
                         //System.out.println("Tick...");
                     } catch (IOException ex) {
