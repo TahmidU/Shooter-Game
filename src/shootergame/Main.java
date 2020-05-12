@@ -14,7 +14,7 @@ import shootergame.panel.mainmenu.MainMenu;
  *
  * @author Tahmi
  */
-public class Launcher {
+public class Main {
     
     /**
      * @param args the command line arguments
