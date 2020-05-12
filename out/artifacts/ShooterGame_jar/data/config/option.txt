@@ -1,0 +1,2 @@
+volume: 0.31
+resolution: 1280x720
